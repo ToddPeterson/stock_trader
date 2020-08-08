@@ -16,4 +16,12 @@ export default {
 </script>
 
 <style>
+#app {
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
 </style>
