@@ -19,6 +19,10 @@ export default {
 </script>
 
 <style scoped>
+.container {
+    margin-top: 16px;
+}
+
 .content {
     width: 60%;
     max-width: 1000px;
