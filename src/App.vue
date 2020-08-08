@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <app-header></app-header>
+        <app-header :transparent="onHome"></app-header>
         <router-view></router-view>
     </div>
 </template>
@@ -11,6 +11,11 @@ import Header from './components/Header.vue'
 export default {
     components: {
         appHeader: Header
+    },
+    computed: {
+        onHome() {
+            return this.$route.name === 'home';
+        }
     }
 }
 </script>
@@ -20,6 +25,10 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    background-color: #F4F4F4;
 }
 
 #app {
@@ -32,10 +41,9 @@ a {
 }
 
 .btn {
-    border: 2px solid #41B984;
-    color: #41B984;
-    padding: 8px 16px;
-    border-radius: 8px;
+    color: #E5C48E;
+    background: #333;
+    padding: 10px 20px;
     cursor: pointer;
     font-weight: 600;
     letter-spacing: 1px;
@@ -43,7 +51,22 @@ a {
 }
 
 .btn:hover {
-    background-color: #41B984;
-    color: white;
+    background-color: #1b1b1b;
+    color: #f8be61;
+}
+
+.col-header {
+    height: 10rem;
+    padding-top: 2em;
+}
+
+.overline::before {
+    display: block;
+    position: relative;
+    left: 0;
+    top: -8px;
+    width: 2.5rem;
+    border-bottom: 2px solid #E5C48E;
+    content: " ";
 }
 </style>

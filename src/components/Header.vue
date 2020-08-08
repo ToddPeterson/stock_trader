@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container" :style="style">
         <div class="content">
             <div class="logo">
                 <router-link :to="{name: 'home'}">StockTrader</router-link>
@@ -14,18 +14,29 @@
 
 <script>
 export default {
-    
+    props: ['transparent'],
+    computed: {
+        style() {
+            const color = this.transparent ? 'transparent' : '#ffffff'
+            return {
+                backgroundColor: color
+            }
+        }
+    }
 }
 </script>
 
 <style scoped>
 .container {
-    margin-top: 16px;
+    height: 4rem;
+    transition: background-color .6s;
+    display: flex;
+    align-items: center;
 }
 
 .content {
-    width: 60%;
-    max-width: 1000px;
+    width: 70%;
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -44,17 +55,19 @@ export default {
     cursor: pointer;
 }
 
-.nav-link, .logo {
+.nav-link,
+.logo {
     transition: color 0.25s;
 }
 
-.nav-link:hover, .logo:hover {
-    color: #41B984;
+.nav-link:hover,
+.logo:hover {
+    color: #E5C48E;
 }
 
 .nav-link.router-link-exact-active {
     /* font-weight: 600; */
-    border-bottom: 2px solid #41B984;
+    border-bottom: 2px solid #E5C48E;
 }
 
 .logo {

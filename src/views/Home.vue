@@ -5,7 +5,7 @@
           <div class="text">
             <h2>Trade with clarity</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, officia ea praesentium unde dicta, dolorem non amet velit commodi, molestiae at explicabo quidem! Autem molestiae nulla optio quidem pariatur!</p>
-            <router-link :to="{name: 'stocks'}" class="btn">Start Trading</router-link>
+            <router-link :to="{name: 'stocks'}" class="btn call-to-action"><span>Start Trading</span></router-link>
           </div>
         </div>
     </div>
@@ -47,5 +47,29 @@ export default {
   width: 36em;
   line-height: 1.8;
   margin-bottom: 1.8rem;
+}
+
+.call-to-action span {
+  position: relative;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.call-to-action span::after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -30px;
+  transition: 0.5s;
+}
+
+.call-to-action:hover span {
+  padding-right: 15px;
+}
+
+.call-to-action:hover span::after {
+  opacity: 1;
+  right: -7px;
 }
 </style>
