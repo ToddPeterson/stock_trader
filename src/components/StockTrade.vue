@@ -36,6 +36,7 @@ export default {
     background-color: #fff;
     padding: 1rem;
     width: 32%;
+    margin-bottom: 2%;
 }
 
 .stat-container span,

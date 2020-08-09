@@ -10,18 +10,11 @@
 </template>
 
 <script>
-import StockTrade from './StockTrade.vue'
+import { mapState } from 'vuex';
+import StockTrade from './StockTrade.vue';
 
 export default {
-    data() {
-        return {
-            companies: [
-                {name: 'Snapple', id: 'asdf', price: 12.34, previous: 12.08},
-                {name: 'Netflix', id: 'qwer', price: 9.87, previous: 10.12},
-                {name: 'MyFace', id: 'zxcv', price: 10.11, previous: 10.11},
-            ]
-        }
-    },
+    computed: mapState(['companies']),
     components: {
         StockTrade
     }

@@ -47,6 +47,7 @@ export default {
 
 .col-side {
     flex-grow: 1;
+    min-width: 25%;
     background-color: #fff;
     border-top: 2px solid #f4f4f4;
     position: relative;
