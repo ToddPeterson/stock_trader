@@ -6,7 +6,7 @@
                     <h1>Overview</h1>
                 </div>
                 <div class="portfolio-container">
-                    <h3 class="overline">Portfolio</h3>
+                    <h3 class="overline section-title">Portfolio</h3>
                     <div class="table-wrap">
                         <table class="portfolio-list">
                             <tr>
@@ -27,25 +27,10 @@
             </div>
             <div class="col col-side">
                 <div class="col-header">
-                    <div class="stats">
-                        <div class="stats">
-                            <div class="item">
-                                <span class="stat-amount">$1,236</span>
-                                <span class="stat-title">Balance</span>
-                            </div>
-                            <div class="item">
-                                <span class="stat-amount">63</span>
-                                <span class="stat-title">Trades</span>
-                            </div>
-                            <div class="item">
-                                <span class="stat-amount">$453</span>
-                                <span class="stat-title">Total Earnings</span>
-                            </div>
-                        </div>
-                    </div>
+                    <stat-bar></stat-bar>
                 </div>
                 <div class="trade-history">
-                    <h3>Trade History</h3>
+                    <h3 class="overline section-title">Trade History</h3>
                 </div>
             </div>
         </div>
@@ -53,6 +38,8 @@
 </template>
 
 <script>
+import StatBar from '../components/StatBar.vue'
+
 export default {
     data() {
         return {
@@ -62,6 +49,9 @@ export default {
             ]
         }
     },
+    components: {
+        StatBar
+    }
 }
 </script>
 
@@ -78,11 +68,11 @@ export default {
     flex-grow: 2;
     padding: 0 4em;
 }
-    
+
 .col-side {
     flex-grow: 1;
     background-color: #fff;
-    border-top: 2px solid #F4F4F4;
+    border-top: 2px solid #f4f4f4;
     position: relative;
 }
 
@@ -107,36 +97,6 @@ export default {
 
 .portfolio-list td {
     border-bottom: 1px solid #aaaaaa;
-}
-
-.stats {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    height: 6rem;
-    background-color: #333333;
-    position: absolute;
-    left: -15%;
-    width: 110%;
-}
-
-.stats .item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.stat-amount {
-    color: white;
-    font-weight: 600;
-    font-size: 24px;
-}
-
-.stat-title {
-    color: #E5C48E;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
 }
 
 .trade-history {

@@ -60,6 +60,11 @@ a {
     padding-top: 2em;
 }
 
+.section-title {
+    font-weight: 400;
+    font-size: 22px;
+}
+
 .overline::before {
     display: block;
     position: relative;
