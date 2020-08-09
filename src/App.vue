@@ -16,6 +16,10 @@ export default {
         onHome() {
             return this.$route.name === 'home';
         }
+    },
+    created() {
+        // Init stock list
+        this.$store.commit('init');
     }
 }
 </script>

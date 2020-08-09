@@ -17,9 +17,9 @@
                             </tr>
                             <tr v-for="stock in stocks" :key="stock.company.id">
                                 <td>{{ stock.company.name }}</td>
-                                <td>{{ stock.price }}</td>
-                                <td>{{ stock.shares }}</td>
-                                <td>{{ stock.shares * stock.price }}</td>
+                                <td>{{ stock.company.price }}</td>
+                                <td>{{ stock.quantity }}</td>
+                                <td>{{ stock.quantity * stock.company.price }}</td>
                             </tr>
                         </table>
                     </div>
@@ -38,17 +38,13 @@
 </template>
 
 <script>
-import StatBar from '../components/StatBar.vue'
+import { mapState } from 'vuex';
+import StatBar from '../components/StatBar.vue';
 
 export default {
-    data() {
-        return {
-            stocks: [
-                {company: {name: 'Snapple', id: 'asdf'}, price: 1.25, shares: 100},
-                {company: {name: 'Netflix', id: 'qwer'}, price: 0.98, shares: 120},
-            ]
-        }
-    },
+    computed: mapState({
+        stocks: state => state.stocks.filter(stock => stock.quantity > 0)
+    }),
     components: {
         StatBar
     }
