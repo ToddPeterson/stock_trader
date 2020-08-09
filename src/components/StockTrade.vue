@@ -7,6 +7,7 @@
                 <div class="trend-symbol" :class="trendSymbol"></div>
                 <span class="trend-percent">{{ percentageTrend }}%</span>
             </div>
+            <button @click="buy" class="btn">Buy</button>
         </div>
     </div>
 </template>
@@ -26,6 +27,11 @@ export default {
             let value = (this.company.price - this.company.previous) / this.company.previous;
             value *= 100;
             return value.toFixed(2);
+        }
+    },
+    methods: {
+        buy() {
+            this.$store.commit('buy', {company: this.company, quantity: 1})
         }
     }
 }

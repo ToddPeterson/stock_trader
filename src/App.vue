@@ -48,6 +48,7 @@ a {
     font-weight: 600;
     letter-spacing: 1px;
     transition: color 0.3s, background-color 0.3s;
+    border: none;
 }
 
 .btn:hover {

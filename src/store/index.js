@@ -11,6 +11,11 @@ function Company(name) {
   this.previous = 10.00;
 }
 
+function Stock(company, quantity) {
+  this.company = company;
+  this.quantity = quantity;
+}
+
 export default new Vuex.Store({
   state: {
     companies: [
@@ -20,9 +25,20 @@ export default new Vuex.Store({
       new Company('Goomble'),
       new Company('Testa'),
       new Company('EnGone'),
-    ]
+    ],
+    balance: 1000,
+    stocks: []
   },
   mutations: {
+    buy(state, payload) {
+      const stockIdx = state.stocks.findIndex(stock => stock.company.id === payload.company.id);
+      if (stockIdx < 0) {
+        const stock = new Stock(payload.company, payload.quantity);
+        state.stocks.push(stock);
+      } else {
+        state.stocks[stockIdx].quantity += payload.quantity;
+      }
+    }
   },
   actions: {
   },
