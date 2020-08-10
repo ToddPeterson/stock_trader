@@ -26,7 +26,7 @@ export default new Vuex.Store({
             new Company('Testa'),
             new Company('EnGone'),
         ],
-        balance: 1000,
+        balance: 1000.00,
         stocks: [],
     },
     mutations: {
@@ -39,6 +39,12 @@ export default new Vuex.Store({
             const stock = state.stocks.find(
                 (stock) => stock.company.id === payload.company.id
             );
+            const price = stock.company.price * payload.quantity;
+            if (price > state.balance) {
+              alert('Insufficient funds.');
+              return;
+            }
+            state.balance -= price;
             stock.quantity += payload.quantity;
         },
     },

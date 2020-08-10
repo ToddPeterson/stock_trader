@@ -1,7 +1,7 @@
 <template>
     <div class="stats">
         <div class="item">
-            <span class="stat-amount">$1,236</span>
+            <span class="stat-amount">${{ balance.toFixed(2) }}</span>
             <span class="stat-title">Balance</span>
         </div>
         <div class="item">
@@ -16,9 +16,11 @@
 </template>
 
 <script>
-    export default {
-        
-    }
+import { mapState } from 'vuex';
+
+export default {
+    computed: mapState(['balance'])
+}
 </script>
 
 <style scoped>
