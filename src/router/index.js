@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '../views/Home.vue';
-import Stocks from '../views/Stocks.vue'
+import Trade from '../views/Trade.vue'
 import Portfolio from '../views/Portfolio.vue'
 
 Vue.use(VueRouter);
@@ -14,9 +14,9 @@ const routes = [
         component: Home,
     },
     {
-        path: '/stocks',
-        name: 'stocks',
-        component: Stocks
+        path: '/trade',
+        name: 'trade',
+        component: Trade
     },
     {
         path: '/portfolio',

@@ -2,10 +2,10 @@
     <div class="container" :style="style">
         <div class="content">
             <div class="logo">
-                <router-link :to="{name: 'home'}">StockTrader</router-link>
+                <router-link :to="{name: 'home'}"><span class="thin">Stock</span>Trader</router-link>
             </div>
             <ul class="nav-links">
-                <router-link tag="li" :to="{name: 'stocks'}" class="nav-link">Stocks</router-link>
+                <router-link tag="li" :to="{name: 'trade'}" class="nav-link">Trade</router-link>
                 <router-link tag="li" :to="{name: 'portfolio'}" class="nav-link">Portfolio</router-link>
             </ul>
         </div>
@@ -51,8 +51,10 @@ export default {
 }
 
 .nav-link {
-    font-size: 20px;
+    font-size: 16px;
+    letter-spacing: 1px;
     cursor: pointer;
+    text-transform: uppercase;
 }
 
 .nav-link,
@@ -73,5 +75,9 @@ export default {
 .logo {
     font-weight: 700;
     font-size: 24px;
+}
+
+.thin {
+    font-weight: 300;
 }
 </style>

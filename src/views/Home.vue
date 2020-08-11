@@ -5,7 +5,7 @@
           <div class="text">
             <h2>Trade with clarity</h2>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus, officia ea praesentium unde dicta, dolorem non amet velit commodi, molestiae at explicabo quidem! Autem molestiae nulla optio quidem pariatur!</p>
-            <router-link :to="{name: 'stocks'}" class="btn call-to-action"><span>Start Trading</span></router-link>
+            <router-link :to="{name: 'trade'}" class="btn call-to-action"><span>Start Trading</span></router-link>
           </div>
         </div>
     </div>
