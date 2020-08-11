@@ -26,8 +26,17 @@ export default new Vuex.Store({
             new Company('Testa'),
             new Company('EnGone'),
         ],
-        balance: 1000.00,
+        balance: 1000.0,
         stocks: [],
+    },
+    getters: {
+        totalInvestment(state) {
+            let total = 0.0;
+            state.stocks.forEach(stock => {
+                total += (stock.company.price * stock.quantity);
+            })
+            return total;
+        }
     },
     mutations: {
         init(state) {

@@ -9,7 +9,7 @@
                 <div class="trend">
                     <div class="top-line">
                         <div class="trend-symbol" :class="trendSymbol"></div>
-                        <div class="trend-percent">{{ percentageTrend }}%</div>
+                        <div class="trend-percent">{{ percentageTrend.toFixed(2) }}%</div>
                     </div>
                     <div class="trend-title">
                         <p>One Day</p>
@@ -18,15 +18,15 @@
                 <div class="trend">
                     <div class="top-line">
                         <div class="trend-symbol" :class="trendSymbol"></div>
-                        <span class="trend-percent">{{ percentageTrend }}%</span>
+                        <span class="trend-percent">{{ percentageTrend.toFixed(2) }}%</span>
                     </div>
                     <div class="trend-title">
                         <p>Seven Day</p>
                     </div>
                 </div>
             </div>
-            <app-toggle v-model="buy"></app-toggle>
-            <button @click="buySelected" class="btn">Buy</button>
+            <app-toggle v-model="buySelected"></app-toggle>
+            <button @click="buy" class="btn">Buy</button>
         </div>
     </div>
 </template>
@@ -52,7 +52,7 @@ export default {
         percentageTrend() {
             let value = (this.company.price - this.company.previous) / this.company.previous;
             value *= 100;
-            return value.toFixed(2);
+            return value;
         }
     },
     methods: {

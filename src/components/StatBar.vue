@@ -9,17 +9,20 @@
             <span class="stat-title">Trades</span>
         </div>
         <div class="item">
-            <span class="stat-amount">$453</span>
-            <span class="stat-title">Total Earnings</span>
+            <span class="stat-amount">${{ totalInvestment.toFixed(2) }}</span>
+            <span class="stat-title">Total Investment</span>
         </div>
     </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex';
 
 export default {
-    computed: mapState(['balance'])
+    computed: {
+        ...mapState(['balance']),
+        ...mapGetters(['totalInvestment'])
+    }
 }
 </script>
 
