@@ -2,10 +2,28 @@
     <div class="container">
         <div class="content">
             <h2 class="company">{{ company.name }}</h2>
-            <div class="stat-container">
+            <div class="price-container">
                 <span class="price overline">${{ company.price }}</span>
-                <div class="trend-symbol" :class="trendSymbol"></div>
-                <span class="trend-percent">{{ percentageTrend }}%</span>
+            </div>
+            <div class="trend-container">
+                <div class="trend">
+                    <div class="top-line">
+                        <div class="trend-symbol" :class="trendSymbol"></div>
+                        <div class="trend-percent">{{ percentageTrend }}%</div>
+                    </div>
+                    <div class="trend-title">
+                        <p>One Day</p>
+                    </div>
+                </div>
+                <div class="trend">
+                    <div class="top-line">
+                        <div class="trend-symbol" :class="trendSymbol"></div>
+                        <span class="trend-percent">{{ percentageTrend }}%</span>
+                    </div>
+                    <div class="trend-title">
+                        <p>Seven Day</p>
+                    </div>
+                </div>
             </div>
             <button @click="buy" class="btn">Buy</button>
         </div>
@@ -45,20 +63,37 @@ export default {
     margin-bottom: 2%;
 }
 
-.stat-container span,
-.stat-container div {
+.trend-container {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #333;
+    color: #fff;
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+}
+
+.trend-title {
+    color: #e5c48e;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.trend .top-line div {
     display: inline-block;
 }
 
 .price {
+    display: inline-block;
     font-size: 44px;
     font-weight: 300;
     margin-top: 1.2rem;
     margin-right: 1rem;
+    margin-bottom: 1rem;
 }
 
 .trend-symbol {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
     margin-bottom: 2px;
 }
 
