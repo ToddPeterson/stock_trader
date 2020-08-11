@@ -25,14 +25,22 @@
                     </div>
                 </div>
             </div>
-            <button @click="buy" class="btn">Buy</button>
+            <app-toggle v-model="buy"></app-toggle>
+            <button @click="buySelected" class="btn">Buy</button>
         </div>
     </div>
 </template>
 
 <script>
+import Toggle from './Toggle.vue';
+
 export default {
     props: ['company'],
+    data() {
+        return {
+            buySelected: true
+        }
+    },
     computed: {
         trendSymbol() {
             return {
@@ -51,6 +59,9 @@ export default {
         buy() {
             this.$store.commit('buy', {company: this.company, quantity: 1})
         }
+    },
+    components: {
+        appToggle: Toggle
     }
 }
 </script>
