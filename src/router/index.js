@@ -5,23 +5,35 @@ import Home from '../views/Home.vue';
 import Trade from '../views/Trade.vue'
 import Portfolio from '../views/Portfolio.vue'
 
+import MainLayout from '../views/layouts/Main.vue'
+import DummyLayout from '../views/layouts/Dummy.vue'
+
 Vue.use(VueRouter);
 
 const routes = [
     {
         path: '/',
         name: 'home',
-        component: Home,
+        components: {
+            default: Home,
+            layout: DummyLayout
+        }
     },
     {
         path: '/trade',
         name: 'trade',
-        component: Trade
+        components: {
+            default: Trade,
+            layout: MainLayout
+        }
     },
     {
         path: '/portfolio',
         name: 'portfolio',
-        component: Portfolio
+        components: {
+            default: Portfolio,
+            layout: MainLayout
+        }
     }
 ];
 

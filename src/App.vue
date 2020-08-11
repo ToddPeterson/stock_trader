@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <app-header :transparent="onHome"></app-header>
-        <router-view></router-view>
+        <router-view name="layout">
+            <router-view></router-view>
+        </router-view>
     </div>
 </template>
 
