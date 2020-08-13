@@ -3,7 +3,7 @@
         <div class="content">
             <div class="col col-main">
                 <div class="col-header">
-                    <h1>Main Title</h1>
+                    <h1>{{ title }}</h1>
                 </div>
                 <slot></slot>
             </div>
@@ -25,6 +25,21 @@ import StatBar from '../../components/StatBar.vue'
 export default {
     components: {
         StatBar
+    },
+    computed: {
+        title() {
+            switch (this.$route.name) {
+                case 'trade':
+                    return "Trade"
+                    break;
+                case 'portfolio':
+                    return "Overview"
+                    break;
+                default:
+                    return ""
+                    break;
+            }
+        }
     }
 }
 </script>

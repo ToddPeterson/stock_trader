@@ -25,6 +25,9 @@ const routes = [
         components: {
             default: Trade,
             layout: MainLayout
+        },
+        props: {
+            title: 'Test Title'
         }
     },
     {
