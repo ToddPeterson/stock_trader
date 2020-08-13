@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="content">
-            <p class="company">{{ company.name }} <span class="abbr">({{ company.abbr }})</span></p>
+            <p class="company">{{ company.name }} <span class="abbr">{{ company.abbr }}</span></p>
             <div class="price-container">
                 <span class="price overline">${{ company.price.toFixed(2) }}</span>
             </div>
@@ -26,6 +26,7 @@
                 </div>
             </div>
             <app-toggle v-model="buySelected"></app-toggle>
+            <input type="number" class="quantity-select" v-model.number="quantity">
             <button @click="submitTransaction" class="btn submit-btn">Submit</button>
         </div>
     </div>
@@ -38,7 +39,8 @@ export default {
     props: ['company'],
     data() {
         return {
-            buySelected: true
+            buySelected: true,
+            quantity: 0,
         }
     },
     computed: {
@@ -66,10 +68,10 @@ export default {
             }
         },
         buy() {
-            this.$store.commit('buy', {company: this.company, quantity: 1})
+            this.$store.commit('buy', {company: this.company, quantity: this.quantity})
         },
         sell() {
-            this.$store.commit('sell', {company: this.company, quantity: 1})
+            this.$store.commit('sell', {company: this.company, quantity: this.quantity})
         },
         trendSymbol(trend) {
             return {
@@ -99,6 +101,7 @@ export default {
 }
 
 .abbr {
+    font-size: 26px;
     font-weight: 300;
 }
 
@@ -161,6 +164,15 @@ export default {
 
 .trend-percent {
     font-weight: 300;
+}
+
+.quantity-select {
+    display: block;
+    margin-top: 1rem;
+    height: 2.2em;
+    padding-left: .8em;
+    width: 100%;
+    font-size: 14px;
 }
 
 .submit-btn {

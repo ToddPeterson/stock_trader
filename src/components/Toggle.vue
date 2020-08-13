@@ -32,9 +32,9 @@ export default {
 
 .option {
     display: flex;
-    width: 4.6em;
-    height: 2em;
-    border: 1px solid #111;
+    width: 50%;
+    height: 2.2em;
+    border: 1px solid #494949;
     cursor: pointer;
     align-items: center;
     justify-content: center;
