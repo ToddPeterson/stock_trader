@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import StatBar from '../../components/StatBar.vue'
+import { mapActions } from 'vuex';
+import StatBar from '../../components/StatBar.vue';
 
 export default {
     components: {
@@ -43,9 +44,7 @@ export default {
         }
     },
     methods: {
-        endDay() {
-            this.$store.commit('endDay')
-        }
+        ...mapActions(['endDay'])
     }
 }
 </script>

@@ -8,8 +8,8 @@
             <div class="trend-container">
                 <div class="trend">
                     <div class="top-line">
-                        <div class="trend-symbol" :class="trendSymbol"></div>
-                        <div class="trend-percent">{{ percentageTrend.toFixed(2) }}%</div>
+                        <div class="trend-symbol" :class="trendSymbol(oneDayTrend)"></div>
+                        <div class="trend-percent">{{ oneDayTrend.toFixed(2) }}%</div>
                     </div>
                     <div class="trend-title">
                         <p>One Day</p>
@@ -17,8 +17,8 @@
                 </div>
                 <div class="trend">
                     <div class="top-line">
-                        <div class="trend-symbol" :class="trendSymbol"></div>
-                        <span class="trend-percent">{{ percentageTrend.toFixed(2) }}%</span>
+                        <div class="trend-symbol" :class="trendSymbol(sevenDayTrend)"></div>
+                        <span class="trend-percent">{{ sevenDayTrend.toFixed(2) }}%</span>
                     </div>
                     <div class="trend-title">
                         <p>Seven Day</p>
@@ -42,18 +42,20 @@ export default {
         }
     },
     computed: {
-        trendSymbol() {
-            return {
-                up: (this.company.price > this.company.previous),
-                down: (this.company.price < this.company.previous),
-                even: (this.company.price === this.company.previous)
-            }
-        },
-        percentageTrend() {
-            let value = (this.company.price - this.company.previous) / this.company.previous;
+        oneDayTrend() {
+            const current = this.company.price;
+            const previous = this.company.priceHistory[ this.company.priceHistory.length - 1];
+            let value = (current - previous) / previous;
             value *= 100;
             return value;
-        }
+        },
+        sevenDayTrend() {
+            const current = this.company.price;
+            const previous = this.company.priceHistory[ this.company.priceHistory.length - 7];
+            let value = (current - previous) / previous;
+            value *= 100;
+            return value;
+        },
     },
     methods: {
         submitTransaction() {
@@ -69,6 +71,13 @@ export default {
         sell() {
             this.$store.commit('sell', {company: this.company, quantity: 1})
         },
+        trendSymbol(trend) {
+            return {
+                up: (trend > 0),
+                down: (trend < 0),
+                even: (trend === 0)
+            }
+        }
     },
     components: {
         appToggle: Toggle

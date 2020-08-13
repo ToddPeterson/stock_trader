@@ -22,6 +22,11 @@ export default {
     created() {
         // Init stock list
         this.$store.commit('init');
+
+        // Run a few days to initialize price history
+        for (let i = 0; i < 7; i++) {
+            this.$store.dispatch('endDay');
+        }
     }
 }
 </script>

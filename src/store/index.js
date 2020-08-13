@@ -3,21 +3,21 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+const random_value = (min, max) => {
+    return Math.random() * (max - min) + min
+}
+
 let companyId = 0;
 function Company(name) {
     this.id = companyId++;
     this.name = name;
-    this.price = 10.11;
-    this.previous = 10.0;
+    this.price = random_value(5, 25);
+    this.priceHistory = [];
 }
 
 function Stock(company, quantity) {
     this.company = company;
     this.quantity = quantity;
-}
-
-const random_value = (min, max) => {
-    return Math.random() * (max - min) + min
 }
 
 export default new Vuex.Store({
@@ -76,13 +76,21 @@ export default new Vuex.Store({
             stock.quantity -= payload.quantity;
             state.balance += price;
         },
-        endDay(state) {
-            state.stocks.forEach(stock => {
+        updatePrice(state, payload) {
+            const company = payload.company;
+            const oldPrice = company.price;
+            company.priceHistory.push(oldPrice);
+            company.price = payload.price;
+        },
+    },
+    actions: {
+        endDay: (context) => {
+            context.state.companies.forEach(company => {
                 const delta = random_value(-5, 5);
-                stock.company.price += delta;
-            })
+                const price = company.price + delta;
+                context.commit('updatePrice', {company, price})
+            });
         }
     },
-    actions: {},
     modules: {},
 });
