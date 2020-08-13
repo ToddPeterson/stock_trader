@@ -26,7 +26,7 @@
                 </div>
             </div>
             <app-toggle v-model="buySelected"></app-toggle>
-            <button @click="buy" class="btn">Buy</button>
+            <button @click="submitTransaction" class="btn submit-btn">Submit</button>
         </div>
     </div>
 </template>
@@ -56,9 +56,19 @@ export default {
         }
     },
     methods: {
+        submitTransaction() {
+            if (this.buySelected) {
+                this.buy();
+            } else {
+                this.sell();
+            }
+        },
         buy() {
             this.$store.commit('buy', {company: this.company, quantity: 1})
-        }
+        },
+        sell() {
+            this.$store.commit('sell', {company: this.company, quantity: 1})
+        },
     },
     components: {
         appToggle: Toggle
@@ -133,5 +143,9 @@ export default {
 
 .trend-percent {
     font-weight: 300;
+}
+
+.submit-btn {
+    margin-top: 1em;
 }
 </style>

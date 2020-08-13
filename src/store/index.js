@@ -48,14 +48,30 @@ export default new Vuex.Store({
             const stock = state.stocks.find(
                 (stock) => stock.company.id === payload.company.id
             );
+
             const price = stock.company.price * payload.quantity;
             if (price > state.balance) {
               alert('Insufficient funds.');
               return;
             }
+
             state.balance -= price;
             stock.quantity += payload.quantity;
         },
+        sell(state, payload) {
+            const stock = state.stocks.find(
+                (stock) => stock.company.id === payload.company.id
+            );
+
+            if (payload.quantity > stock.quantity) {
+                alert('Insufficient shares.');
+                return;
+            }
+
+            const price = stock.company.price * payload.quantity;
+            stock.quantity -= payload.quantity;
+            state.balance += price;
+        }
     },
     actions: {},
     modules: {},

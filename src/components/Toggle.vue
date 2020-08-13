@@ -18,7 +18,8 @@ export default {
     },
     methods: {
         select(input) {
-            this.$emit('input', input)
+            this.value = input;
+            this.$emit('input', input);
         }
     }
 }
