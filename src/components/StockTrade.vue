@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="content">
-            <h2 class="company">{{ company.name }}</h2>
+            <p class="company">{{ company.name }} <span class="abbr">({{ company.abbr }})</span></p>
             <div class="price-container">
                 <span class="price overline">${{ company.price.toFixed(2) }}</span>
             </div>
@@ -93,6 +93,15 @@ export default {
     margin-bottom: 2%;
 }
 
+.company {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.abbr {
+    font-weight: 300;
+}
+
 .trend-container {
     display: flex;
     justify-content: space-evenly;
@@ -115,7 +124,7 @@ export default {
 
 .price {
     display: inline-block;
-    font-size: 44px;
+    font-size: 40px;
     font-weight: 300;
     margin-top: 1.2rem;
     margin-right: 1rem;

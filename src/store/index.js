@@ -8,9 +8,10 @@ const random_value = (min, max) => {
 }
 
 let companyId = 0;
-function Company(name) {
+function Company(name, abbr) {
     this.id = companyId++;
     this.name = name;
+    this.abbr = abbr
     this.price = random_value(5, 25);
     this.priceHistory = [];
 }
@@ -23,12 +24,12 @@ function Stock(company, quantity) {
 export default new Vuex.Store({
     state: {
         companies: [
-            new Company('Snapple'),
-            new Company('MyFace'),
-            new Company('HuFlix'),
-            new Company('Goomble'),
-            new Company('Testa'),
-            new Company('EnGone'),
+            new Company('Snapple', 'SNP'),
+            new Company('MyFace', 'MFA'),
+            new Company('HuFlix', 'HFX'),
+            new Company('Goomble', 'GMB'),
+            new Company('Testa', 'TST'),
+            new Company('EnGone', 'EGN'),
         ],
         balance: 1000.0,
         stocks: [],
