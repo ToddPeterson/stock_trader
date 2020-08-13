@@ -16,6 +16,10 @@ function Stock(company, quantity) {
     this.quantity = quantity;
 }
 
+const random_value = (min, max) => {
+    return Math.random() * (max - min) + min
+}
+
 export default new Vuex.Store({
     state: {
         companies: [
@@ -71,6 +75,12 @@ export default new Vuex.Store({
             const price = stock.company.price * payload.quantity;
             stock.quantity -= payload.quantity;
             state.balance += price;
+        },
+        endDay(state) {
+            state.stocks.forEach(stock => {
+                const delta = random_value(-5, 5);
+                stock.company.price += delta;
+            })
         }
     },
     actions: {},

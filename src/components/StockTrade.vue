@@ -3,7 +3,7 @@
         <div class="content">
             <h2 class="company">{{ company.name }}</h2>
             <div class="price-container">
-                <span class="price overline">${{ company.price }}</span>
+                <span class="price overline">${{ company.price.toFixed(2) }}</span>
             </div>
             <div class="trend-container">
                 <div class="trend">

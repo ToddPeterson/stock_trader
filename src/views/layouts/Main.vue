@@ -4,6 +4,7 @@
             <div class="col col-main">
                 <div class="col-header">
                     <h1>{{ title }}</h1>
+                    <button class="btn" @click="endDay">End Day</button>
                 </div>
                 <slot></slot>
             </div>
@@ -40,6 +41,11 @@ export default {
                     break;
             }
         }
+    },
+    methods: {
+        endDay() {
+            this.$store.commit('endDay')
+        }
     }
 }
 </script>
@@ -63,5 +69,10 @@ export default {
     background-color: #fff;
     border-top: 2px solid #f4f4f4;
     position: relative;
+}
+
+.col-header {
+    height: 10rem;
+    padding-top: 2em;
 }
 </style>

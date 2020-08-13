@@ -62,11 +62,6 @@ a {
     color: #f8be61;
 }
 
-.col-header {
-    height: 10rem;
-    padding-top: 2em;
-}
-
 .section-title {
     font-weight: 400;
     font-size: 22px;
