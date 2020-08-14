@@ -6,7 +6,9 @@
                     <h1>{{ title }}</h1>
                     <button class="btn" @click="endDay">End Day</button>
                 </div>
-                <slot></slot>
+                <div class="page-content">
+                    <slot></slot>
+                </div>
             </div>
             <div class="col col-side">
                 <div class="col-header">
@@ -52,10 +54,17 @@ export default {
 <style scoped>
 .content {
     width: 100%;
-    min-height: 100vh;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    padding-top: 4rem;
     margin: 0 auto;
     display: flex;
     align-items: stretch;
+}
+
+.page-content {
+    position: relative;
 }
 
 .col-main {

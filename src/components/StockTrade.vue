@@ -101,7 +101,7 @@ export default {
 }
 
 .abbr {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 300;
 }
 
@@ -177,5 +177,11 @@ export default {
 
 .submit-btn {
     margin-top: 1em;
+}
+
+@media screen and (max-width: 1222px) {
+    .container {
+        width: 48%;
+    }
 }
 </style>

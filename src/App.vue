@@ -38,8 +38,14 @@ export default {
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+    position: relative;
+}
+
 body {
     background-color: #F4F4F4;
+    padding-top: 4rem;
 }
 
 #app {
