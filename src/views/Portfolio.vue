@@ -4,7 +4,7 @@
             <div class="portfolio-container">
                 <h3 class="overline section-title">Portfolio</h3>
                 <div class="table-wrap">
-                    <table class="portfolio-list">
+                    <table class="portfolio-list" v-if="stocks.length > 0">
                         <tr>
                             <th>Company</th>
                             <th>Price</th>
@@ -18,6 +18,10 @@
                             <td>{{ stock.quantity * stock.company.price }}</td>
                         </tr>
                     </table>
+                    <div class="empty-msg" v-else>
+                        <p>You don't own any stocks.</p>
+                        <router-link :to="{name: 'trade'}" class="btn call-to-action"><span>Start Trading</span></router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,5 +68,9 @@ export default {
 
 .trade-history {
     padding: 0 1.6em;
+}
+
+.empty-msg p {
+    margin-bottom: 1.6rem;
 }
 </style>

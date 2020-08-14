@@ -40,7 +40,7 @@ export default {
     data() {
         return {
             buySelected: true,
-            quantity: 0,
+            quantity: 1,
         }
     },
     computed: {

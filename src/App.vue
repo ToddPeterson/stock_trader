@@ -73,6 +73,30 @@ a {
     color: #f8be61;
 }
 
+.call-to-action span {
+  position: relative;
+  display: inline-block;
+  transition: 0.5s;
+}
+
+.call-to-action span::after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -30px;
+  transition: 0.5s;
+}
+
+.call-to-action:hover span {
+  padding-right: 15px;
+}
+
+.call-to-action:hover span::after {
+  opacity: 1;
+  right: -7px;
+}
+
 .section-title {
     font-weight: 400;
     font-size: 22px;

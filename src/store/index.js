@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-const random_value = (min, max) => {
+const randomValue = (min, max) => {
     return Math.random() * (max - min) + min
 }
 
@@ -11,8 +11,10 @@ let companyId = 0;
 function Company(name, abbr) {
     this.id = companyId++;
     this.name = name;
-    this.abbr = abbr
-    this.price = random_value(5, 25);
+    this.abbr = abbr;
+    this.price = randomValue(5, 25);
+    this._trend = randomValue(-10, 10);
+    this._deltaTrend = randomValue(-5, 5);
     this.priceHistory = [];
 }
 
@@ -77,21 +79,55 @@ export default new Vuex.Store({
             stock.quantity -= payload.quantity;
             state.balance += price;
         },
-        updatePrice(state, payload) {
+        setPrice(state, payload) {
             const company = payload.company;
             const oldPrice = company.price;
             company.priceHistory.push(oldPrice);
             company.price = payload.price;
         },
+        setTrend(state, payload) {
+            payload.company._trend = payload.trend;
+        }
     },
     actions: {
         endDay: (context) => {
             context.state.companies.forEach(company => {
-                const delta = random_value(-5, 5);
-                const price = company.price + delta;
-                context.commit('updatePrice', {company, price})
+                //
+                // update price using _trend + some variance
+                //
+                let price = company.price * (1 + (company._trend / 100));
+                // add some variance
+                const priceVarianceLimit = price * 0.05;
+                price += randomValue(-priceVarianceLimit, priceVarianceLimit) + 0.01;
+                // commit the changes
+                context.commit('setPrice', {company, price})
+
+                //
+                // update trend
+                //
+                let trend = company._trend  + company._deltaTrend;
+                // context.commit('setTrend', {company, trend});
+                if (trend <= -100) {
+                    trend = -99.9;
+                }
+                company._trend = trend;
+
+                // update deltaTrend. 
+                // Greater variance when trend is small. 
+                // Skews toward opposite sign of trend.
+                let change = randomValue(-2, 2);
+                if (trend < 2 && trend > -2) {
+                    change *= 1.5;
+                } else {
+                    if (trend > 0) {
+                        change -= 1;
+                    } else {
+                        change += 1;
+                    }
+                }
+                company._deltaTrend += change;
             });
-        }
+        },
     },
     modules: {},
 });

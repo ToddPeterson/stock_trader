@@ -48,28 +48,4 @@ export default {
   line-height: 1.8;
   margin-bottom: 1.8rem;
 }
-
-.call-to-action span {
-  position: relative;
-  display: inline-block;
-  transition: 0.5s;
-}
-
-.call-to-action span::after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -30px;
-  transition: 0.5s;
-}
-
-.call-to-action:hover span {
-  padding-right: 15px;
-}
-
-.call-to-action:hover span::after {
-  opacity: 1;
-  right: -7px;
-}
 </style>
