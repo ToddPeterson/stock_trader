@@ -115,14 +115,14 @@ export default new Vuex.Store({
                 // update deltaTrend. 
                 // Greater variance when trend is small. 
                 // Skews toward opposite sign of trend.
-                let change = randomValue(-2, 2);
+                let change = randomValue(-1.2, 1.2);
                 if (trend < 2 && trend > -2) {
                     change *= 1.5;
                 } else {
                     if (trend > 0) {
-                        change -= 1;
+                        change -= .8;
                     } else {
-                        change += 1;
+                        change += .8;
                     }
                 }
                 company._deltaTrend += change;
