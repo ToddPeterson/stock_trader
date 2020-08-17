@@ -16,6 +16,9 @@
                 </div>
                 <div class="trade-history">
                     <h3 class="overline section-title">Trade History</h3>
+                    <div class="transaction" v-for="item in transactions">
+                        {{ item.company.abbr }} | {{ item.quantity }} | {{ item.price }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -23,7 +26,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import StatBar from '../../components/StatBar.vue';
 
 export default {
@@ -31,6 +34,7 @@ export default {
         StatBar
     },
     computed: {
+        ...mapState(['transactions']),
         title() {
             switch (this.$route.name) {
                 case 'trade':
@@ -82,5 +86,9 @@ export default {
 .col-header {
     height: 10rem;
     padding-top: 2em;
+}
+
+.trade-history {
+    padding: 0 1rem;
 }
 </style>
