@@ -16,9 +16,21 @@
                 </div>
                 <div class="trade-history">
                     <h3 class="overline section-title">Trade History</h3>
-                    <div class="transaction" v-for="item in transactions">
-                        {{ item.company.abbr }} | {{ item.quantity }} | {{ item.price }}
-                    </div>
+                    <table class="hist-table" v-if="transactions.length > 0">
+                        <tr>
+                            <th>Action</th>
+                            <th>Comp.</th>
+                            <th>Quant.</th>
+                            <th>Price</th>
+                        </tr>
+                        <tr v-for="item in transactions" :key="item.id">
+                            <td>{{ item.isSale ? 'SELL' : 'BUY' }}</td>
+                            <td>{{ item.company.abbr }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>${{ item.price.toFixed(2) }}</td>
+                        </tr>
+                    </table>
+                    <div class="hist-table" v-else>No trades have been made.</div>
                 </div>
             </div>
         </div>
@@ -90,5 +102,14 @@ export default {
 
 .trade-history {
     padding: 0 1rem;
+}
+
+.hist-table {
+    margin-top: 1.6rem;
+    width: 100%;
+}
+
+.hist-table th {
+    text-align: left;
 }
 </style>

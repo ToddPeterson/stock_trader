@@ -23,7 +23,7 @@ function Stock(company, quantity) {
     this.quantity = quantity;
 }
 
-function Transaction(company, quantity, price, isSale) {
+function Transaction(company, quantity, price, isSale, id) {
     this.company = company;
     this.quantity = quantity;
     this.price = price;
@@ -43,6 +43,8 @@ export default new Vuex.Store({
         balance: 1000.0,
         stocks: [],
         transactions: [],
+        day: 0,
+        transactionCount: 0
     },
     getters: {
         totalInvestment(state) {
@@ -72,7 +74,8 @@ export default new Vuex.Store({
 
             state.balance -= price;
             stock.quantity += payload.quantity;
-            state.transactions.push(new Transaction(stock.company, payload.quantity, stock.company.price, false));
+            state.transactions.push(new Transaction(stock.company, payload.quantity, stock.company.price, false, state.transactions.length));
+            state.transactionCount++;
         },
         sell(state, payload) {
             const stock = state.stocks.find(
@@ -87,7 +90,8 @@ export default new Vuex.Store({
             const price = stock.company.price * payload.quantity;
             stock.quantity -= payload.quantity;
             state.balance += price;
-            state.transactions.push(new Transaction(stock.company, payload.quantity, stock.company.price, true));
+            state.transactions.push(new Transaction(stock.company, payload.quantity, stock.company.price, true, state.transactions.length));
+            state.transactionCount++;
         },
         setPrice(state, payload) {
             const company = payload.company;
@@ -136,6 +140,8 @@ export default new Vuex.Store({
                     }
                 }
                 company._deltaTrend += change;
+
+                context.state.day++;
             });
         },
     },
